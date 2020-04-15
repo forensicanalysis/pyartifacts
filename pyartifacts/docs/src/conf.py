@@ -18,7 +18,7 @@ sys.path.insert(0, os.path.abspath('../../..'))
 # -- Project information -----------------------------------------------------
 
 project = 'pyartifacts'
-copyright = '2019 Siemens AG'
+copyright = '2019-2020 Siemens AG'
 author = 'Jonas Plum'
 
 # The full version, including alpha/beta/rc tags
@@ -34,7 +34,7 @@ master_doc = 'index'
 # ones.
 extensions = [
     "sphinx.ext.autodoc",
-    "sphinx_markdown_builder"
+    # "sphinx_markdown_builder"
 ]
 
 # Add any paths that contain templates here, relative to this directory.
