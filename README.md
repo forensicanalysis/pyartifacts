@@ -3,6 +3,7 @@
 <p  align="center">
  <a href="https://github.com/forensicanalysis/pyartifacts/actions"><img src="https://github.com/forensicanalysis/pyartifacts/workflows/CI/badge.svg" alt="build" /></a>
  <a href="https://codecov.io/gh/forensicanalysis/pyartifacts"><img src="https://codecov.io/gh/forensicanalysis/pyartifacts/branch/master/graph/badge.svg" alt="coverage" /></a>
+ <a href='https://pyartifacts.readthedocs.io/en/latest/?badge=latest'><img src='https://readthedocs.org/projects/pyartifacts/badge/?version=latest' alt='Documentation Status' /></a>
 </p>
 
 
