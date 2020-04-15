@@ -46,9 +46,6 @@ if __name__ == '__main__':
     print(registry)
 ```
 
-The full documentation can be found in [the documentation](https://forensicanalysis.github.io/artifactlib/pyartifacts/docs/html).
-
-
 ## Contact
 
 For feedback, questions and discussions you can use the [Open Source DFIR Slack](https://github.com/open-source-dfir/slack).
