@@ -28,6 +28,8 @@ setup(
     author='Demian Kellermann',
     author_email='demian.kellermann@siemens.com',
     description='Lightweight ForensicArtifacts library',
+    long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     packages=['pyartifacts'],
     include_package_data=True,
     install_requires=['jsonschema', 'pyyaml', 'networkx'],
