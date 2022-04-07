@@ -62,7 +62,7 @@ class ArtifactDefinition:
     """ Base class for artifacts """
 
     def __init__(self, name: str, sources: List[ArtifactSource],
-                 labels: List[str] = None, supported_os: List[str] = None):
+                 aliases: List[str] = None, supported_os: List[str] = None):
         self.name = name
         self.sources = sources
         self.aliases = aliases or []

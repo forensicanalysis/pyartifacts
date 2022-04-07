@@ -71,12 +71,14 @@ class Registry:
                     if artifact.supported_os and not any(os_name in os_filter for os_name in artifact.supported_os):
                         continue
                     if artifact.name in self.artifacts:
-                        LOGGER.warning("%s: Name is already used by %s", artifact.name, self.artifacts[artifact.name].name)
+                        LOGGER.warning("%s: Name is already used by %s",
+                                artifact.name, self.artifacts[artifact.name].name)
                     else:
                         self.artifacts[artifact.name] = artifact
                     for alias in artifact.aliases:
                         if alias in self.artifacts:
-                            LOGGER.warning("%s: Alias %s already used by %s", artifact.name, alias, self.artifacts[alias].name)
+                            LOGGER.warning("%s: Alias %s already used by %s",
+                                    artifact.name, alias, self.artifacts[alias].name)
                             continue
                         self.artifacts[alias] = artifact
 
