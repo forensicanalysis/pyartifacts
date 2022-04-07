@@ -1,4 +1,4 @@
-name: Win10FileTest
+name: SiemensWin10FileTest
 doc: Group of all test artifacts
 sources:
 - type: ARTIFACT_GROUP
@@ -38,8 +38,30 @@ sources:
     keys: ['HKEY_LOCAL_MACHINE\Software\Microsoft\Windows NT\CurrentVersion']
 supported_os: [Windows]
 ---
+name: TestRegistryUserWildcard
+doc: Checks for user parsing and wildcard support
+sources:
+- type: REGISTRY_KEY
+  attributes:
+    keys: ['HKEY_USERS\%%users.sid%%\Software\Synaptics\Syn*']
+supported_os: [Windows]
+---
+name: TestRegistryValueWildcard
+doc: Checks REGISTRY_VALUE and wildcards in value names
+sources:
+- type: REGISTRY_VALUE
+  provides:
+    - key: foo
+      regex: (.*)
+  attributes:
+    key_value_pairs:
+      - {key: 'HKEY_USERS\%%users.sid%%\Software\Synaptics\SynTPEnh', value: 'S*'}
+supported_os: [Windows]
+---
 name: TestUnknownOSWindowsFile
 doc: Checks REGISTRY_VALUE and wildcards in value names
+aliases:
+  - TestUnknownFileStartingWithA
 sources:
   - type: FILE
     attributes:

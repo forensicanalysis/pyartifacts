@@ -44,6 +44,7 @@ class TestPyArtifacts:
     def test_artifact_read(self, registry):
         assert len(registry.artifacts) == 7
         assert 'EmptyArtifact' not in registry.artifacts
+        assert 'TestUnknownFileStartingWithA' in registry.artifacts
 
 
     def test_variable_resolving(self, registry):

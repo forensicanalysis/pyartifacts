@@ -23,7 +23,7 @@ from setuptools import setup
 
 setup(
     name='pyartifacts',
-    version='0.12.5',
+    version='0.13.0',
     url='https://github.com/forensicanalysis/pyartifacts',
     author='Demian Kellermann',
     author_email='demian.kellermann@siemens.com',

@@ -77,12 +77,12 @@ class KnowledgeBase:
 
         # get the providers of this value (in-edges in the graph)
         if key not in self.graph:
-            raise ValueError("No providers found for %s" % key)
+            raise ValueError(f"No providers found for {key}")
 
         collected_values: Set[str] = set()
         providers = self.graph.in_edges(nbunch=[key])
         if not providers:
-            raise ValueError("No providers are registered for %s" % key)
+            raise ValueError(f"No providers are registered for {key}")
         for provider, __ in providers:
             provider_result = resolve_callback(provider)
             collected_values.update(self._extract_var(key, provider, provider_result))
@@ -99,14 +99,14 @@ class KnowledgeBase:
                              SOURCE_TYPE_REGISTRY_KEY, SOURCE_TYPE_REGISTRY_VALUE):
             all_data = data
         else:
-            raise ValueError("Unsupported source type for variable expansion: %s" % source.type)
+            raise ValueError(f"Unsupported source type for variable expansion: {source.type}")
 
         for provider in source.provides:
             if provider.key == key:  # have to fish out the right provides-directive
                 if provider.regex:
                     return [m.group(1) for l in all_data for m in (re.search(provider.regex, l),) if m]
                 return all_data
-        raise ValueError("No provider matched %s" % key)
+        raise ValueError(f"No provider matched {key}")
 
     def _build_graph(self, artifacts: Dict[str, 'ArtifactDefinition']) -> None:
         for artifact in artifacts.values():

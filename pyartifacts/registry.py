@@ -58,7 +58,7 @@ class Registry:
         """ Reads a single YAML file and adds the contained artifacts to the registry """
         if not os_filter:
             os_filter = OS_TYPES
-        with open(file, 'r') as definition_file:
+        with open(file, 'r', encoding='utf-8') as definition_file:
             try:
                 artifacts = list(yaml.safe_load_all(definition_file))
             except yaml.YAMLError as err:
@@ -70,7 +70,15 @@ class Registry:
                 if artifact:
                     if artifact.supported_os and not any(os_name in os_filter for os_name in artifact.supported_os):
                         continue
-                    self.artifacts[artifact.name] = artifact
+                    if artifact.name in self.artifacts:
+                        LOGGER.warning("%s: Name is already used by %s", artifact.name, self.artifacts[artifact.name].name)
+                    else:
+                        self.artifacts[artifact.name] = artifact
+                    for alias in artifact.aliases:
+                        if alias in self.artifacts:
+                            LOGGER.warning("%s: Alias %s already used by %s", artifact.name, alias, self.artifacts[alias].name)
+                            continue
+                        self.artifacts[alias] = artifact
 
             else:
                 LOGGER.error("Not adding %s due to validation error", artifact_dict.get('name', '!ERR_NO_NAME'))
@@ -94,5 +102,5 @@ class Registry:
     def _load_schema(self):
         my_path = os.path.dirname(os.path.realpath(__file__))
         my_schema = os.path.join(my_path, 'artifact_schema.json')
-        with open(my_schema, 'r') as schema:
+        with open(my_schema, 'r', encoding='utf-8') as schema:
             self.artifact_schema = json.load(schema)
