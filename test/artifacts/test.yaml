@@ -1,4 +1,4 @@
-name: SiemensWin10FileTest
+name: Win10FileTest
 doc: Group of all test artifacts
 sources:
 - type: ARTIFACT_GROUP
@@ -10,8 +10,6 @@ supported_os: [Windows]
 ---
 name: TestAllTextFiles
 doc: All text files from an image
-labels:
-  - some tag
 sources:
 - type: FILE
   attributes:
