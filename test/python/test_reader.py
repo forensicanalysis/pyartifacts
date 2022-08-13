@@ -42,8 +42,9 @@ def registry():
 class TestPyArtifacts:
 
     def test_artifact_read(self, registry):
-        assert len(registry.artifacts) == 7
+        assert len(registry.artifacts) == 10 # 9 valid artifacts + 1 alias
         assert 'EmptyArtifact' not in registry.artifacts
+        assert 'TestUnknownFileStartingWithA' in registry.artifacts
 
 
     def test_variable_resolving(self, registry):

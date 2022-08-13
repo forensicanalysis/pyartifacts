@@ -185,7 +185,7 @@
 				"minLength": 1
 			}
 		},
-        "labels": {
+        "aliases": {
 			"type": "array",
 			"minItems": 1,
 			"items": {

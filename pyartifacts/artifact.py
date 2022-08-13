@@ -62,14 +62,14 @@ class ArtifactDefinition:
     """ Base class for artifacts """
 
     def __init__(self, name: str, sources: List[ArtifactSource],
-                 labels: List[str] = None, supported_os: List[str] = None):
+                 aliases: List[str] = None, supported_os: List[str] = None):
         self.name = name
         self.sources = sources
-        self.labels = labels or []
+        self.aliases = aliases or []
         self.supported_os = supported_os or []
 
     def __repr__(self):
-        return 'Artifact(%s, %d sources, %s)' % (self.name, len(self.sources), self.supported_os)
+        return f'Artifact({self.name}, {len(self.sources)} sources, {self.supported_os})'
 
 
 class ArtifactGroupSource(ArtifactSource):
@@ -139,7 +139,7 @@ def make_artifact(artifact_yaml: dict) -> ArtifactDefinition:
     LOGGER.debug("Making artifact %s...", artifact_yaml.get('name', 'WTF NO NAME'))
     name = artifact_yaml['name']
     supported_os = artifact_yaml.get('supported_os', [])
-    labels = artifact_yaml.get('labels', [])
+    aliases = artifact_yaml.get('aliases', [])
     sources_dict = artifact_yaml['sources']
     sources = []
     for source_dict in sources_dict:
@@ -172,6 +172,6 @@ def make_artifact(artifact_yaml: dict) -> ArtifactDefinition:
             sources.append(
                 ArtifactCommandSource(provides=provides, supported_os=source_os, **source_dict['attributes']))
         else:
-            raise ValueError("%s: Unknown source type: %s" % (name, source_type))
-    artifact = ArtifactDefinition(name, sources, labels, supported_os)
+            raise ValueError(f"{name}: Unknown source type: {source_type}")
+    artifact = ArtifactDefinition(name, sources, aliases, supported_os)
     return artifact
